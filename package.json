@@ -10,8 +10,8 @@
 		"email": "sindresorhus@gmail.com",
 		"url": "https://sindresorhus.com"
 	},
-	"type": "module",
-	"exports": "./index.js",
+	"type": "commonjs",
+	"main": "./index.js",
 	"engines": {
 		"node": ">=14.16"
 	},

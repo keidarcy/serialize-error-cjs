@@ -23,4 +23,4 @@ const list = [
 
 const errorConstructors = new Map(list);
 
-export default errorConstructors;
+module.exports = errorConstructors; 

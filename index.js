@@ -1,6 +1,6 @@
-import errorConstructors from './error-constructors.js';
+const errorConstructors = require('./error-constructors.js');
 
-export class NonError extends Error {
+class NonError extends Error {
 	name = 'NonError';
 
 	constructor(message) {
@@ -138,7 +138,7 @@ const destroyCircular = ({
 	return to;
 };
 
-export function serializeError(value, options = {}) {
+function serializeError(value, options = {}) {
 	const {
 		maxDepth = Number.POSITIVE_INFINITY,
 		useToJSON = true,
@@ -165,7 +165,7 @@ export function serializeError(value, options = {}) {
 	return value;
 }
 
-export function deserializeError(value, options = {}) {
+function deserializeError(value, options = {}) {
 	const {maxDepth = Number.POSITIVE_INFINITY} = options;
 
 	if (value instanceof Error) {
@@ -187,7 +187,7 @@ export function deserializeError(value, options = {}) {
 	return new NonError(value);
 }
 
-export function isErrorLike(value) {
+function isErrorLike(value) {
 	return Boolean(value)
 	&& typeof value === 'object'
 	&& 'name' in value
@@ -202,4 +202,10 @@ function isMinimumViableSerializedError(value) {
 	&& !Array.isArray(value);
 }
 
-export {default as errorConstructors} from './error-constructors.js';
+module.exports = {
+	serializeError,
+	deserializeError,
+	isErrorLike,
+	errorConstructors
+}
+
