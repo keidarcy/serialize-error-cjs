@@ -48,7 +48,7 @@ const toJSON = from => {
 	return json;
 };
 
-const getErrorConstructor = name => errorConstructors.get(name) ?? Error;
+const getErrorConstructor = name => errorConstructors.get(name) ? errorConstructors.get(name) : Error;
 
 // eslint-disable-next-line complexity
 const destroyCircular = ({
@@ -159,7 +159,7 @@ function serializeError(value, options = {}) {
 	// People sometimes throw things besides Error objects…
 	if (typeof value === 'function') {
 		// `JSON.stringify()` discards functions. We do too, unless a function is thrown directly.
-		return `[Function: ${value.name ?? 'anonymous'}]`;
+		return `[Function: ${value.name ? value.name : 'anonymous'}]`;
 	}
 
 	return value;
